@@ -1,25 +1,562 @@
-<section class="hero">
-  <div class="container hero-grid">
-    <!-- Coluna do texto -->
-    <div>
-      <div class="pill">Personal Trainer • Consultoria Online e Presencial</div>
-      <h1>Acelere seus resultados e mude sua vida com o treino certo.</h1>
-      <p>Vamos alcançar seus objetivos juntos! Avaliação detalhada, treinos personalizados e acompanhamento contínuo para evoluir com segurança.</p>
-      <div class="hero-cta">
-        <a class="btn" href="https://wa.me/5585985568854?text=Oi%2C%20Higor!%20Quero%20come%C3%A7ar%20minha%20consultoria%20de%20treino." target="_blank" rel="noopener">Começar no WhatsApp</a>
-        <a class="btn btn-outline" href="#planos">Ver Planos</a>
-      </div>
-      <div class="safety">
-        <span style="font-weight:900;">✓</span>
-        Avaliação inicial sem custo • Cancelamento a qualquer momento
-      </div>
-    </div>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Higor Torres Personal Trainer — Acelere seus resultados</title>
+  <meta name="description" content="Higor Torres Personal Trainer: consultoria online e presencial com avaliação detalhada, treinos personalizados e acompanhamento contínuo.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --brand:#0ea5e9;
+      --brand-dark:#0284c7;
+      --bg:#ffffff;
+      --card:#ffffff;
+      --text:#000000;     /* preto */
+      --muted:#000000;    /* preto para texto secundário */
+      --border:#e2e8f0;   /* slate-200 */
+      --soft:#f8fafc;     /* slate-50 */
+      --accent:#16a34a;   /* green-600 */
+      --shadow:0 6px 24px rgba(15,23,42,0.06);
+      --radius:14px;
+      --maxw:1200px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .container{max-width:var(--maxw);margin:0 auto;padding:0 20px}
 
-    <!-- Coluna da foto -->
-    <div class="hero-photo">
-      <div class="photo-frame">
-        <img src="Personal.png" alt="Higor Torres — Personal Trainer">
+    /* Header claro */
+    header{
+      position:sticky; top:0; z-index:50;
+      background:var(--bg); border-bottom:1px solid var(--border);
+    }
+    .nav{display:flex;align-items:center;justify-content:space-between;height:70px;gap:12px}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:700;font-size:18px;min-width:0}
+    .logo{
+      width:36px;height:36px;border-radius:50%;
+      overflow:hidden; display:inline-grid; place-items:center;
+      border:1px solid var(--border); background:var(--soft);
+    }
+    .logo img{width:100%;height:100%;object-fit:cover}
+    .brand #brandName{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .nav-links{display:flex;gap:18px}
+    .nav-links a{color:var(--text);font-weight:600}
+    .nav-links a:hover{opacity:.8}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      padding:12px 18px;border-radius:12px;font-weight:700;
+      background:var(--brand); color:white; box-shadow:var(--shadow);
+      transition:.2s transform ease, .2s background ease, .2s box-shadow ease;
+      white-space:nowrap;
+    }
+    .btn:hover{background:var(--brand-dark); transform:translateY(-1px)}
+    .btn-outline{background:#ffffff;border:1px solid var(--border);color:var(--text)}
+
+    /* Hero claro com gradientes suaves */
+    .hero{
+      padding:56px 0 32px; position:relative; overflow:hidden;
+      background:
+        radial-gradient(60rem 60rem at 80% -10%, rgba(14,165,233,.15), transparent 60%),
+        radial-gradient(50rem 40rem at -10% 40%, rgba(34,197,94,.06), transparent 60%);
+      border-bottom:1px solid var(--border);
+    }
+    .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center}
+    .hero h1{font-size:40px;line-height:1.15;margin:0 0 14px}
+    .hero p{color:var(--text);opacity:0.9;font-size:18px;margin:0 0 22px}
+    .pill{display:inline-flex;gap:8px;align-items:center;background:#eef6ff;border:1px solid #dbeafe;color:#000;padding:8px 12px;border-radius:999px;font-size:12px;font-weight:700;letter-spacing:.02em}
+    .hero-cta{display:flex;gap:12px;flex-wrap:wrap}
+    .safety{display:flex;gap:14px;align-items:center;color:#000;font-size:13px;margin-top:8px;opacity:0.9}
+
+    /* Cards/inputs claros */
+    .card{
+      background:var(--card); border:1px solid var(--border);
+      border-radius:var(--radius); padding:22px; box-shadow:var(--shadow); color:var(--text)
+    }
+    input, select{
+      padding:12px;border-radius:10px;border:1px solid var(--border);
+      background:#fff;color:var(--text)
+    }
+
+    /* Seções */
+    .section{padding:44px 0}
+    .section h3{font-size:26px;margin:0 0 8px;color:var(--text)}
+    .muted{color:var(--text);opacity:0.9}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .benefit{display:flex;gap:12px}
+    .icon{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;background:#eef6ff;border:1px solid #dbeafe;color:#000;font-weight:700}
+
+    /* Planos */
+    .plans{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .plan{position:relative; max-width:420px; width:100%}
+    .badge{position:absolute;top:14px;right:14px;background:#d1fae5;color:#065f46;font-weight:900;font-size:12px;padding:6px 10px;border-radius:999px}
+    .price{font-size:30px;font-weight:800;margin:10px 0;color:var(--text)}
+    .features{display:flex;flex-direction:column;gap:8px;margin:12px 0 18px}
+    .features li{list-style:none;display:flex;gap:10px;align-items:flex-start;color:var(--text)}
+    .features li span{color:#16a34a}
+
+    /* Depoimentos */
+    .testimonials{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .testimonial .name{font-weight:700;margin-top:10px;color:var(--text)}
+
+    /* Resultados dos Clientes (galeria) */
+    .results { padding: 44px 0; }
+    .results h3 { font-size: 26px; margin: 0 0 8px; color: #000; }
+    .results .muted { color: #000; opacity: .9; }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 14px;
+    }
+    .gallery-item {
+      position: relative;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      cursor: zoom-in;
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      max-height: 380px;
+      object-fit: cover;
+      display: block;
+    }
+    .caption {
+      position: absolute;
+      left: 10px;
+      bottom: 10px;
+      background: rgba(255,255,255,0.92);
+      color: #000;
+      font-weight: 800;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      backdrop-filter: blur(2px);
+    }
+
+    /* FAQ */
+    .faq{display:grid;grid-template-columns:1fr;gap:12px}
+    details{background:#ffffff;border:1px solid var(--border);border-radius:12px;padding:14px;color:var(--text)}
+    details summary{cursor:pointer;font-weight:700;color:var(--text)}
+
+    /* Footer claro */
+    footer{padding:28px 0;border-top:1px solid var(--border);color:var(--text);background:#fff}
+    .footer-grid{display:grid;grid-template-columns:1.3fr .7fr .7fr;gap:18px}
+    .footer-grid a{color:var(--text)}
+    .footer-grid a:hover{opacity:.8}
+    .footer-brand{display:flex;align-items:center;gap:12px}
+    .footer-logo{width:46px;height:46px;border-radius:50%;overflow:hidden;border:1px solid var(--border);background:var(--soft)}
+    .footer-logo img{width:100%;height:100%;object-fit:cover}
+
+    /* Botão flutuante */
+    .whatsapp{
+      position:fixed; right:18px; bottom:18px; z-index:60;
+      width:56px;height:56px;border-radius:50%; background:#22c55e; color:#052e16;
+      display:grid;place-items:center; font-weight:900; box-shadow:var(--shadow)
+    }
+
+    /* Lightbox simples */
+    .lightbox {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.8);
+      display: none; align-items: center; justify-content: center;
+      z-index: 1000; padding: 16px;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img { max-width: 100%; max-height: 90vh; border-radius: 12px; }
+    .lightbox .close {
+      position: absolute; top: 16px; right: 16px;
+      background: #fff; color: #000; font-weight: 900;
+      border: 1px solid var(--border); border-radius: 999px;
+      padding: 8px 12px; cursor: pointer;
+    }
+
+    /* Responsividade - tablets */
+    @media (max-width: 1024px){
+      .hero h1{font-size:34px}
+      .hero p{font-size:16px}
+      .grid-3{grid-template-columns:repeat(2,1fr)}
+      .plans{grid-template-columns:repeat(2,1fr)}
+      .testimonials{grid-template-columns:repeat(2,1fr)}
+      .footer-grid{grid-template-columns:1fr 1fr}
+      .nav{height:64px}
+      .gallery { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* Responsividade - smartphones */
+    @media (max-width: 640px){
+      .container{padding:0 16px}
+      .nav{height:60px}
+      .nav-links{display:none}
+      .btn{padding:10px 14px;font-size:14px;border-radius:10px}
+      .brand{font-size:16px;gap:10px}
+      .logo{width:32px;height:32px}
+
+      .hero{padding:30px 0 20px}
+      .hero-grid{grid-template-columns:1fr;gap:18px}
+      .hero h1{font-size:28px;line-height:1.2}
+      .hero p{font-size:15px}
+      .pill{font-size:11px;padding:6px 10px}
+      .safety{font-size:12px}
+
+      #leadForm .grid{grid-template-columns:1fr !important}
+      input, select{font-size:16px}
+      .card{padding:16px}
+      .section{padding:28px 0}
+      .section h3{font-size:22px}
+
+      .grid-3{grid-template-columns:1fr}
+      .plans{grid-template-columns:1fr}
+      .testimonials{grid-template-columns:1fr}
+      .plan{max-width:100%}
+
+      .footer-grid{grid-template-columns:1fr}
+      .footer-logo{width:40px;height:40px}
+      .whatsapp{right:14px;bottom:14px;width:52px;height:52px}
+
+      .gallery { grid-template-columns: 1fr; }
+      .gallery-item img { max-height: 420px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <span class="logo">
+          <img src="https://cdn.abacus.ai/images/ea06f69f-97bc-4277-b8a4-734f287dc267.png" alt="Higor Torres - logo">
+        </span>
+        <span id="brandName">Higor Torres Personal Trainer</span>
+      </div>
+      <nav class="nav-links">
+        <a href="#beneficios">Benefícios</a>
+        <a href="#planos">Planos</a>
+        <a href="#depoimentos">Depoimentos</a>
+        <a href="#resultados">Resultados</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <a class="btn" href="https://wa.me/5585985568854" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="pill">Personal Trainer • Consultoria Online e Presencial</div>
+          <h1>Acelere seus resultados e mude sua vida com o treino certo.</h1>
+          <p>Vamos alcançar seus objetivos juntos! Avaliação detalhada, treinos personalizados e acompanhamento contínuo para evoluir com segurança.</p>
+          <div class="hero-cta">
+            <a class="btn" href="https://wa.me/5585985568854?text=Oi%2C%20Higor!%20Quero%20come%C3%A7ar%20minha%20consultoria%20de%20treino." target="_blank" rel="noopener">Começar no WhatsApp</a>
+            <a class="btn btn-outline" href="#planos">Ver Planos</a>
+          </div>
+          <div class="safety">
+            <span style="font-weight:900;">✓</span>
+            Avaliação inicial sem custo • Cancelamento a qualquer momento
+          </div>
+        </div>
+        <div class="card">
+          <h3>Agende sua avaliação</h3>
+          <p class="muted">Preencha seus dados e entrarei em contato.</p>
+          <form id="leadForm" onsubmit="return sendLead(event)">
+            <div class="grid" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px">
+              <input required name="nome" placeholder="Seu nome">
+              <input required type="tel" name="whatsapp" placeholder="WhatsApp">
+              <input required type="email" name="email" placeholder="E-mail" style="grid-column:1/-1">
+              <select name="objetivo" style="grid-column:1/-1">
+                <option value="">Seu objetivo</option>
+                <option>Emagrecimento</option>
+                <option>Hipertrofia</option>
+                <option>Condicionamento</option>
+                <option>Saúde/Qualidade de vida</option>
+              </select>
+            </div>
+            <button class="btn" style="width:100%;margin-top:12px">Quero ser atendido(a)</button>
+            <p id="leadMsg" class="muted" style="margin-top:8px"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section id="beneficios" class="section">
+      <div class="container">
+        <h3>Por que treinar com o Higor?</h3>
+        <p class="muted">Metodologia prática, atenção de verdade e evolução a cada semana.</p>
+        <div class="grid-3" style="margin-top:14px">
+          <div class="card benefit">
+            <div class="icon">📝</div>
+            <div>
+              <strong>Avaliação e Anamnese Detalhada</strong>
+              <p class="muted">Entendo seu histórico, objetivos e rotina para definir o melhor ponto de partida.</p>
+            </div>
+          </div>
+          <div class="card benefit">
+            <div class="icon">🏋️</div>
+            <div>
+              <strong>Prescrição de Treinos Personalizados</strong>
+              <p class="muted">Planilhas e progressões ajustadas ao seu nível, com foco em segurança e resultado.</p>
+            </div>
+          </div>
+          <div class="card benefit">
+            <div class="icon">📱</div>
+            <div>
+              <strong>Acompanhamento e Suporte Contínuo</strong>
+              <p class="muted">Ajustes constantes, feedback e suporte direto pelo WhatsApp.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="planos" class="section">
+      <div class="container">
+        <h3>Planos</h3>
+        <p class="muted">Escolha o formato que melhor se encaixa na sua rotina.</p>
+        <div class="plans" style="margin-top:14px">
+          <div class="card plan">
+            <div class="badge">Popular</div>
+            <h4>Consultoria Online</h4>
+            <div class="price">R$ 149,00/mês</div>
+            <ul class="features">
+              <li><span>✓</span> Treinos personalizados e atualizados</li>
+              <li><span>✓</span> Suporte e ajustes contínuos</li>
+              <li><span>✓</span> Acompanhamento via WhatsApp</li>
+            </ul>
+            <a class="btn" href="https://wa.me/5585985568854?text=Tenho%20interesse%20na%20Consultoria%20Online%20(R%24149)" target="_blank" rel="noopener">Contratar</a>
+          </div>
+          <div class="card plan" style="background:linear-gradient(180deg,#ffffff,#f8fafc);border-color:#dbeafe">
+            <div class="badge">Mais escolhido</div>
+            <h4>Consultoria Híbrida</h4>
+            <div class="price">R$ 257,00/mês</div>
+            <ul class="features">
+              <li><span>✓</span> Online + 1 encontro presencial.</li>
+              <li><span>✓</span> Foco em corrigir técnicas de movimento</li>
+              <li><span>✓</span> Avaliar intensidade ideal do treinamento</li>
+            </ul>
+            <a class="btn" href="https://wa.me/5585985568854?text=Tenho%20interesse%20na%20Consultoria%20H%C3%ADbrida%20(R%20257)" target="_blank" rel="noopener">Contratar</a>
+          </div>
+          <div class="card plan">
+            <div class="badge">Premium</div>
+            <h4>Mentoria + 4 Aulas Presenciais</h4>
+            <div class="price">R$ 497,00</div>
+            <ul class="features">
+              <li><span>✓</span> 4 sessões presenciais focadas na técnica</li>
+              <li><span>✓</span> Mentoria individual estratégica</li>
+              <li><span>✓</span> Plano de evolução personalizado</li>
+            </ul>
+            <a class="btn" href="https://wa.me/5585985568854?text=Quero%20a%20Mentoria%20%2B%204%20aulas%20presenciais%20(R%20497)" target="_blank" rel="noopener">Contratar</a>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:18px;max-width:820px">
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <strong>Atendimento Particular</strong>
+            <div class="muted">A partir de <strong>R$ 957,00/mês</strong>. Entre em contato para disponibilidade e proposta personalizada.</div>
+            <div>
+              <a class="btn" href="https://wa.me/5585985568854?text=Tenho%20interesse%20no%20Atendimento%20Particular%20(a%20partir%20de%20R%20957%2Fm%C3%AAs)" target="_blank" rel="noopener">Solicitar proposta</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="depoimentos" class="section">
+      <div class="container">
+        <h3>Depoimentos</h3>
+        <p class="muted">Resultados e experiências reais de alunos(as).</p>
+        <div class="testimonials" style="margin-top:14px">
+          <div class="card testimonial">
+            <p>“Nunca consegui manter consistência antes. Com o Higor, entendi o processo e evoluí toda semana.”</p>
+            <div class="name">Carla M.</div>
+            <div class="muted">Emagrecimento • -8kg em 4 meses</div>
+          </div>
+          <div class="card testimonial">
+            <p>“Os ajustes semanais fizeram total diferença. Me sinto mais forte e motivado.”</p>
+            <div class="name">Bruno S.</div>
+            <div class="muted">Hipertrofia • +4kg massa magra</div>
+          </div>
+          <div class="card testimonial">
+            <p>“Suporte rápido e treinos que cabem na minha rotina. Recomendo demais!”</p>
+            <div class="name">Luana P.</div>
+            <div class="muted">Qualidade de vida</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Resultados dos Clientes -->
+    <section id="resultados" class="results">
+      <div class="container">
+        <h3>Resultados dos Clientes</h3>
+        <p class="muted">Transformações reais com acompanhamento e treinos personalizados.</p>
+
+        <div class="gallery">
+          <figure class="gallery-item">
+            <img src="1.jpg" alt="3 meses de Consultoria — aluna">
+            <figcaption class="caption">3 meses de Consultoria</figcaption>
+          </figure>
+
+          <figure class="gallery-item">
+            <img src="2.jpg" alt="3 meses de Consultoria — aluna">
+            <figcaption class="caption">3 meses de Consultoria</figcaption>
+          </figure>
+
+          <figure class="gallery-item">
+            <img src="3.jpg" alt="1 ano de Consultoria — aluna">
+            <figcaption class="caption">1 ano de Consultoria</figcaption>
+          </figure>
+
+          <figure class="gallery-item">
+            <img src="4.jpg" alt="1 ano de Consultoria — aluno">
+            <figcaption class="caption">1 ano de Consultoria</figcaption>
+          </figure>
+
+          <figure class="gallery-item">
+            <img src="5.jpg" alt="6 meses de Consultoria — aluna">
+            <figcaption class="caption">6 meses de Consultoria</figcaption>
+          </figure>
+
+          <figure class="gallery-item">
+            <img src="6.jpg" alt="4 meses de Consultoria — aluno">
+            <figcaption class="caption">4 meses de Consultoria</figcaption>
+          </figure>
+
+          <figure class="gallery-item">
+            <img src="7.jpg" alt="8 meses de Consultoria — aluna">
+            <figcaption class="caption">8 meses de Consultoria</figcaption>
+          </figure>
+
+          <figure class="gallery-item">
+            <img src="8.jpg" alt="3 meses de Consultoria — aluna">
+            <figcaption class="caption">3 meses de Consultoria</figcaption>
+          </figure>
+
+          <figure class="gallery-item">
+            <img src="9.jpg" alt="3 meses de Consultoria — aluno">
+            <figcaption class="caption">3 meses de Consultoria</figcaption>
+          </figure>
+
+          <figure class="gallery-item">
+            <img src="10.jpg" alt="9 meses de Consultoria — aluna">
+            <figcaption class="caption">9 meses de Consultoria</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <!-- Lightbox -->
+      <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Visualização da foto">
+        <button class="close" onclick="closeLightbox()">Fechar</button>
+        <img id="lightboxImg" src="" alt="">
+      </div>
+    </section>
+
+    <section id="faq" class="section">
+      <div class="container">
+        <h3>FAQ</h3>
+        <div class="faq" style="margin-top:14px">
+          <details>
+            <summary>Como funciona a avaliação inicial?</summary>
+            <p class="muted">Coletamos dados, histórico, preferências e restrições. Montamos seu plano inicial e alinhamos metas realistas.</p>
+          </details>
+          <details>
+            <summary>Em quanto tempo vejo resultados?</summary>
+            <p class="muted">Varia por objetivo e dedicação. Em geral, 3–6 semanas já mostram evolução mensurável em carga, medidas ou condicionamento.</p>
+          </details>
+          <details>
+            <summary>Posso treinar em casa?</summary>
+            <p class="muted">Sim. Adaptamos com ou sem equipamentos e conforme sua rotina.</p>
+          </details>
+          <details>
+            <summary>Como são os ajustes?</summary>
+            <p class="muted">Analisamos seu feedback e métricas, e ajustamos volume, intensidade e exercícios semanalmente ou quinzenalmente.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <span class="footer-logo">
+          <img src="https://cdn.abacus.ai/images/ea06f69f-97bc-4277-b8a4-734f287dc267.png" alt="Higor Torres - logo">
+        </span>
+        <div>
+          <div style="font-weight:700">Higor Torres Personal Trainer</div>
+          <p class="muted" style="margin:6px 0 0">Acelere seus resultados com treinos personalizados, avaliação detalhada e acompanhamento contínuo.</p>
+        </div>
+      </div>
+      <div>
+        <strong>Links</strong>
+        <div style="margin-top:8px;display:flex;flex-direction:column;gap:6px">
+          <a href="#beneficios">Benefícios</a>
+          <a href="#planos">Planos</a>
+          <a href="#depoimentos">Depoimentos</a>
+          <a href="#resultados">Resultados</a>
+          <a href="#faq">FAQ</a>
+        </div>
+      </div>
+      <div>
+        <strong>Contato</strong>
+        <div style="margin-top:8px;display:flex;flex-direction:column;gap:6px">
+          <a href="mailto:higortorres.personaltrainer@gmail.com">higortorres.personaltrainer@gmail.com</a>
+          <a href="https://wa.me/5585985568854" target="_blank" rel="noopener">WhatsApp</a>
+          <span>CNPJ —</span>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+    <div class="container" style="margin-top:18px;font-size:13px;">
+      © <span id="year"></span> Higor Torres Personal Trainer. Todos os direitos reservados.
+    </div>
+  </footer>
+
+  <a class="whatsapp" href="https://wa.me/5585985568854" target="_blank" rel="noopener" aria-label="WhatsApp">WA</a>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    function sendLead(e){
+      e.preventDefault();
+      const form = e.target;
+      const nome = form.nome.value.trim();
+      const zap = form.whatsapp.value.trim();
+      const email = form.email.value.trim();
+      const objetivo = form.objetivo.value;
+      const msg = encodeURIComponent(
+        `Olá, Higor! Quero minha avaliação.\n\nNome: ${nome}\nWhatsApp: ${zap}\nEmail: ${email}\nObjetivo: ${objetivo || '—'}`
+      );
+      const url = `https://wa.me/5585985568854?text=${msg}`;
+      window.open(url, '_blank', 'noopener');
+      document.getElementById('leadMsg').textContent = 'Abrimos o WhatsApp com sua mensagem. Também responderei por e-mail.';
+      form.reset();
+      return false;
+    }
+
+    // Lightbox da galeria
+    const lb = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lightboxImg');
+    document.addEventListener('click', (e) => {
+      const img = e.target.closest('.gallery-item img');
+      if(!img) return;
+      lbImg.src = img.src;
+      lbImg.alt = img.alt || 'Resultado';
+      lb.classList.add('open');
+    });
+    function closeLightbox(){
+      lb.classList.remove('open');
+      lbImg.src = '';
+    }
+    lb.addEventListener('click', (e) => {
+      if(e.target === lb) closeLightbox();
+    });
+    document.addEventListener('keydown', (e) => {
+      if(e.key === 'Escape' && lb.classList.contains('open')) closeLightbox();
+    });
+  </script>
+</body>
+</html>
